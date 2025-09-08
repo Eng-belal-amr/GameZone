@@ -1,0 +1,89 @@
+﻿@{
+    var currentController = ViewContext.RouteData.Values["Controller"]?.ToString();
+}
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GameZone | @ViewData["Title"]</title>
+
+    <!-- Bootstrap & Icons -->
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap-icons/font/bootstrap-icons.css" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Navbar -->
+   <nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" asp-controller="Home" asp-action="Index">
+            <i class="bi bi-controller"></i> GameZone
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link @(ViewData["Title"]=="Games"?"active":"")" asp-controller="Games" asp-action="Index">Games</a></li>
+                <li class="nav-item"><a class="nav-link @(ViewData["Title"]=="Categories"?"active":"")" asp-controller="Categories" asp-action="Index">Categories</a></li>
+                <li class="nav-item"><a class="nav-link @(ViewData["Title"]=="Devices"?"active":"")" asp-controller="Devices" asp-action="Index">Devices</a></li>
+                <li class="nav-item"><a class="nav-link @(ViewData["Title"]=="Dashboard"?"active":"")" asp-controller="Dashboard" asp-action="Index">Dashboard</a></li>
+            </ul>
+
+            <!-- زرار تغيير الوضع -->
+            <button id="themeToggle" class="btn btn-outline-light ms-3">
+                <i class="bi bi-moon"></i>
+            </button>
+        </div>
+    </div>
+</nav>
+
+    <!-- Body -->
+    <div class="container mt-4">
+        @RenderBody()
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-center text-white py-3 mt-4">
+        <div class="container">
+            &copy; @DateTime.Now.Year - GameZone | All Rights Reserved
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+   <script>
+    const toggleBtn = document.getElementById("themeToggle");
+    const body = document.body;
+
+    // لو المستخدم اختار Light Mode قبل كده نحفظه
+    if (localStorage.getItem("theme") === "light") {
+        body.classList.add("light-mode");
+        toggleBtn.innerHTML = '<i class="bi bi-sun"></i>';
+    } else {
+        body.classList.remove("light-mode");
+        toggleBtn.innerHTML = '<i class="bi bi-moon"></i>';
+    }
+
+    // عند الضغط على الزرار نبدّل بين الوضعين
+    toggleBtn.addEventListener("click", () => {
+        body.classList.toggle("light-mode");
+
+        if (body.classList.contains("light-mode")) {
+            localStorage.setItem("theme", "light");
+            toggleBtn.innerHTML = '<i class="bi bi-sun"></i>';
+        } else {
+            localStorage.setItem("theme", "dark");
+            toggleBtn.innerHTML = '<i class="bi bi-moon"></i>';
+        }
+    });
+</script>
+
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

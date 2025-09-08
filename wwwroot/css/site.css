@@ -1,0 +1,201 @@
+﻿/* ألوان الوضع الداكن */
+:root {
+    --bg-color: #121212;
+    --navbar-bg: #1f1f1f;
+    --card-bg: #1e1e1e;
+    --text-color: #f1f1f1;
+    --link-color: #0d6efd;
+    --footer-bg: #1f1f1f;
+}
+
+/* ألوان الوضع الفاتح */
+.light-mode {
+    --bg-color: #f8f9fa;
+    --navbar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --text-color: #212529;
+    --link-color: #0d6efd;
+    --footer-bg: #f1f1f1;
+}
+
+/* الجسم */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: "Chakra Petch", sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* النافبار */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+}
+
+    .navbar .nav-link {
+        color: var(--text-color) !important;
+        transition: color 0.3s ease;
+    }
+
+        .navbar .nav-link.active,
+        .navbar .nav-link:hover {
+            color: var(--link-color) !important;
+            font-weight: bold;
+        }
+
+/* البطاقات */
+.card {
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    border: 1px solid #333;
+    border-radius: 10px;
+}
+
+/* الفوتر */
+footer {
+    background-color: var(--footer-bg);
+    color: var(--text-color);
+    margin-top: auto;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    border-top: 1px solid #333;
+}
+
+/* المسافات الداخلية */
+main {
+    padding: 20px;
+}
+/* ====== Shared Page Styles for Categories & Devices ====== */
+.page-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+/* عنوان الصفحة */
+.page-title {
+    display: flex;
+    align-items: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 25px;
+    color: var(--text-color);
+    gap: 10px;
+    animation: fadeDown 0.6s ease-in-out;
+}
+
+    .page-title i {
+        font-size: 2rem;
+        color: var(--link-color);
+    }
+
+/* ====== Card Style ====== */
+.list-group {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    background-color: var(--card-bg);
+}
+
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 20px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.05rem;
+    cursor: pointer;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+}
+
+    .list-group-item:last-child {
+        border-bottom: none;
+    }
+
+    /* Hover animation */
+    .list-group-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        transform: scale(1.02);
+    }
+
+/* ====== Counter Badge ====== */
+.badge {
+    font-size: 0.9rem;
+    padding: 8px 12px;
+    border-radius: 12px;
+    background-color: var(--link-color);
+    color: #fff;
+    font-weight: bold;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+    transition: all 0.3s ease;
+}
+
+.list-group-item:hover .badge {
+    transform: scale(1.1);
+}
+
+/* ====== Animations ====== */
+@keyframes fadeDown {
+    0% {
+        transform: translateY(-15px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.list-group-item {
+    animation: fadeUp 0.5s ease forwards;
+}
+.category-card {
+    transition: all 0.3s ease-in-out;
+}
+
+    .category-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+.card {
+    transition: all 0.3s ease-in-out;
+    border-radius: 12px;
+}
+
+    .card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+
+.btn {
+    transition: all 0.2s ease-in-out;
+}
+
+    .btn:hover {
+        transform: scale(1.05);
+    }
+
+.hover-shadow:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    transition: all 0.3s ease;
+}
